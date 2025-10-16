@@ -226,7 +226,7 @@ public class DlgCekKunjunganBedaPoli extends javax.swing.JDialog {
         jLabel28.setForeground(new java.awt.Color(0, 131, 62));
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel28.setText("NO JKN / NO RM / NIK");
-        jLabel28.setFont(new java.awt.Font("Poppins", 0, 36)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel28.setPreferredSize(new java.awt.Dimension(450, 75));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
