@@ -20,8 +20,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Properties;
 import javax.swing.JOptionPane;
+import org.json.JSONObject;
 
 /**
  *
@@ -404,7 +406,7 @@ public class DlgCekinMobileJKN extends javax.swing.JDialog {
                         .addComponent(btnAngka8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(btnAngka9, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,10 +505,24 @@ public class DlgCekinMobileJKN extends javax.swing.JDialog {
                 this.dispose();
                 form.setVisible(true);
                 this.setCursor(Cursor.getDefaultCursor());
+            } else if (decodeQRAndGetNomorKartu(NoRMPasien.getText()) != null) {
+                String nomorkartu = decodeQRAndGetNomorKartu(NoRMPasien.getText());
+                if (Sequel.cariInteger("select count(referensi_mobilejkn_bpjs.nomorkartu) from referensi_mobilejkn_bpjs where referensi_mobilejkn_bpjs.nomorkartu='" + nomorkartu + "' and referensi_mobilejkn_bpjs.status='Belum' and  referensi_mobilejkn_bpjs.tanggalperiksa=CURRENT_DATE()") > 0) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    DlgRegistrasiSEPMobileJKN form = new DlgRegistrasiSEPMobileJKN(null, true);
+                    form.tampil(nomorkartu);
+                    form.tampilfingerprint(nomorkartu);
+                    form.setSize(this.getWidth(), this.getHeight());
+                    form.setLocationRelativeTo(jPanel1);
+                    this.dispose();
+                    form.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Data Booking MobileJKN tidak ditemukan. ");
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Data Booking MobileJKN tidak ditemukan. ");
             }
-
         }
 
     }//GEN-LAST:event_NoRMPasienKeyPressed
@@ -515,6 +531,17 @@ public class DlgCekinMobileJKN extends javax.swing.JDialog {
 
         dispose();
     }//GEN-LAST:event_BtnCloseActionPerformed
+
+    private String decodeQRAndGetNomorKartu(String base64QrCode) {
+        try {
+            byte[] decodedBytes = Base64.getDecoder().decode(base64QrCode);
+            String jsonString = new String(decodedBytes, "UTF-8");
+            JSONObject json = new JSONObject(jsonString);
+            return json.getString("nokapst");
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     private void BtnClose2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnClose2ActionPerformed
 

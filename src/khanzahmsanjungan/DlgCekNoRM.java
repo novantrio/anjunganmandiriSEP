@@ -10,23 +10,16 @@
  */
 package khanzahmsanjungan;
 
-import bridging.BPJSCekRujukanKartuPCare;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 
@@ -204,7 +197,7 @@ public class DlgCekNoRM extends javax.swing.JDialog {
         jLabel28.setForeground(new java.awt.Color(0, 131, 62));
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel28.setText("No Rekam Medis Pasien / NIK KTP : ");
-        jLabel28.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel28.setPreferredSize(new java.awt.Dimension(350, 75));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
