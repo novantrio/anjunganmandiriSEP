@@ -1,402 +1,260 @@
-<div align="center">
-  <img height="150" src="https://camo.githubusercontent.com/62da68eb62b1e5f175f7d1f0191dd89a653d7908feb22d37d4a0ab07365d6791/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f4d3967624264396e6244724f5475314d71782f67697068792e676966"  />
-</div>
-
-###
-
-<div align="center">
-  <a href="https://id.linkedin.com/in/abdul-rokhim-661523110" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="linkedin logo"  />
-  </a>
-</div>
-
-###
-
-<div align="center">
-  <img src="https://visitor-badge.laobi.icu/badge?page_id=abdulrokhimrepo.abdulrokhimrepo&"  />
-</div>
-
-###
-
-<h1 align="center">hey there 👋</h1>
-
-###
-
-
-# AnjunganmandiriSEP
-
+# Anjungan Pasien Mandiri
 Anjungan Pasien Mandiri RS Indriati Boyolali (Adaptasi SIMRS Khanza)
 
-
-## Authors
-
-- [@abdulrokhimrepo](https://www.github.com/abdulrokhimrepo)
-
-
-## Tech Stack
-
-Java
-
-
-## Deployment
-
-Silahkan lakukan deploy, dan tempatkan pada folder utama SIMRS Khanza.
-Tambahkan konfigurasi berikut pada database.xml
-Tambahkan table pada database dengan file SQL di folder tambahan Table.
-Tambahkan lib yg ada pada folder tambahan lib
-Anjungan ini menggunakan versi aplikasi FP BPJS v 2.0(harus login setiap akan rekan FP)
-
-```bash
-  <entry key="URLFINGERPRINTBPJS">https://fp.bpjs-kesehatan.go.id/finger-rest/</entry>
-  <entry key="URLAPLIKASIFINGERPRINTBPJS">C:\Program Files (x86)\Aplikasi Sidik Jari BPJS Kesehatan\After.exe</entry>
-  <entry key="USERFINGERPRINTBPJS"></entry>
-  <entry key="PASSWORDFINGERPRINTBPJS"></entry>
-  <entry key="URLAPLIKASIFRISTA">C:\frista\frista.exe</entry>
-```
-
-
-
-<h3 align="left">🛠 Language and tools</h3>
-
-###
-
-<div align="left">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" height="40" alt="java logo"  />
-</div>
-
-###
-
-<h3 align="left">🔥   My Stats :</h3>
-
-###
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=abdulrokhimrepo&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false&order=2" height="150" alt="languages graph"  />
-</div>
-
-<<<<<<< HEAD
-###
-=======
-###
->>>>>>> 0cdbcd62424f96a28edbf16970022011629d84c1
-
-
-# PANDUAN PENGGUNAAN ANJUNGAN PASIEN MANDIRI
-## RUMAH SAKIT INDRIATI BOYOLALI
+Disusun oleh: Tim Sistem Informasi Anjungan Pasien Mandiri  
+Tanggal penyusunan: 30 Oktober 2025
 
 ---
 
-**Disusun oleh:** Sistem Informasi Anjungan Pasien Mandiri  
-**Tanggal:** 30 Oktober 2025
+## Ringkasan singkat
+Aplikasi desktop ini digunakan sebagai anjungan pendaftaran mandiri dan loket pendaftaran di Rumah Sakit Indriati Boyolali. Fungsi utama mencakup pengambilan nomor antrian, pendaftaran poli, check-in booking, pendaftaran pasien BPJS (pembuatan SEP), kontrol, dan aktivasi layanan Satu Sehat. Sistem terintegrasi dengan layanan eksternal seperti BPJS VClaim / Mobile JKN dan aplikasi sidik jari BPJS.
 
 ---
 
-## DAFTAR ISI
-
-I. [Pendahuluan](#pendahuluan)  
-II. [Fungsi Utama Anjungan Pasien Mandiri](#fungsi-utama-anjungan-pasien-mandiri)  
-III. [Panduan Penggunaan Fitur](#panduan-penggunaan-fitur)  
-IV. [Prosedur Pendaftaran Lengkap BPJS](#prosedur-pendaftaran-lengkap-bpjs)  
-V. [Validasi dan Pemeriksaan Sistem](#validasi-dan-pemeriksaan-sistem)  
-VI. [Penting Diperhatikan](#penting-diperhatikan)  
-VII. [Kesimpulan](#kesimpulan)  
-
----
-
-## PENDAHULUAN
-
-Anjungan Pasien Mandiri merupakan sistem pelayanan otomatis yang dirancang untuk mempermudah dan mempercepat proses pendaftaran pasien di Rumah Sakit Indriati Boyolali. Sistem ini mampu menghubungkan dengan sistem BPJS dan Mobile JKN untuk memberikan pelayanan terbaik kepada pasien.
-
-Sistem ini terintegrasi dengan:
-- Sistem BPJS VClaim dan Mobile JKN
-- Aplikasi Fingerprint Sidik Jari BPJS
-- Sistem Antrean Online
-- Sistem Satu Sehat
+## Daftar Isi
+1. [Persiapan dan Deployment](#persiapan-dan-deployment)  
+2. [Fungsi Utama & Alur Penggunaan (Rincian Menu Halaman Utama)](#fungsi-utama--alur-penggunaan-rincian-menu-halaman-utama)  
+3. [Aturan Bisnis dan Kondisi Operasional (bahasa non-teknis)](#aturan-bisnis-dan-kondisi-operasional-bahasa-non-teknis)  
+4. [Cek Kunjungan Pertama SEP & Cek SKDP/SEP Kontrol (rincian lengkap)](#cek-kunjungan-pertama-sep--cek-skdpsep-kontrol-rincian-lengkap)  
+5. [Autoprint / Silent Print (Cetak Otomatis)](#autoprint--silent-print-cetak-otomatis)  
+6. [Pesan Kesalahan dan Penanganan](#pesan-kesalahan-dan-penanganan)  
+7. [Offline & Rekonsiliasi BPJS](#offline--rekonsiliasi-bpjs)  
+8. [Kepatuhan, Privasi, dan Keamanan](#kepatuhan-privasi-dan-keamanan)  
+9. [Panduan Demo & Checklist Operator](#panduan-demo--checklist-operator)  
+10. [Kontak Dukungan Teknis (Diskusi Repository)](#kontak-dukungan-teknis-diskusi-repository)  
+11. [Penutup](#penutup)
 
 ---
 
-## FUNGSI UTAMA ANJUNGAN PASIEN MANDIRI
+## Persiapan dan Deployment
 
-Sistem ini menyediakan 8 fungsi utama berdasarkan tampilan utama:
-
-1. **ANTRIAN PASIEN** - Mengambil nomor antrian pendaftaran
-2. **PENDAFTARAN POLIKLINIK** - Mendaftarkan pasien baru
-3. **CHECK-IN (UMUM)** - Check-in pasien yang telah booking
-4. **CHECK-IN (MobileJKN)** - Check-in via aplikasi Mobile JKN
-5. **PASIEN JKN** - Pelayanan pasien BPJS
-6. **SEP KONTROL** - Pembuatan SEP untuk kontrol
-7. **KONTROL BEDA POLI** - Kontrol ke poli berbeda
-8. **AKTIVASI SATUSEHAT MOBILE** - Aktivasi layanan Satu Sehat
+1. Tempatkan aplikasi pada folder utama SIMRS Khanza.  
+2. Tambahkan konfigurasi yang diperlukan pada `database.xml`. Contoh parameter konfigurasi:
+```xml
+<entry key="URLFINGERPRINTBPJS">https://fp.bpjs-kesehatan.go.id/finger-rest/</entry>
+<entry key="URLAPLIKASIFINGERPRINTBPJS">C:\Program Files (x86)\Aplikasi Sidik Jari BPJS Kesehatan\After.exe</entry>
+<entry key="USERFINGERPRINTBPJS"></entry>
+<entry key="PASSWORDFINGERPRINTBPJS"></entry>
+<entry key="URLAPLIKASIFRISTA">C:\frista\frista.exe</entry>
+```
+3. Jalankan skrip SQL pada folder `tambahan table/` untuk menambahkan tabel atau kolom yang dibutuhkan. Ikuti urutan eksekusi jika ada file urutan.  
+4. Salin library tambahan (`.jar`) dari folder `tambahan lib/` ke lokasi classpath yang sesuai bila diperlukan.  
+5. Pastikan aplikasi FP BPJS v2.0 terpasang dan dapat diakses (aplikasi ini meminta login saat akan menggunakan fitur fingerprint).
 
 ---
 
-## PANDUAN PENGGUNAAN FITUR
+## Fungsi Utama & Alur Penggunaan (Rincian Menu Halaman Utama)
 
-### A. ANTRIAN PASIEN
-**Fungsi:** Mengambil nomor antrian pendaftaran secara mandiri
+Berikut penjelasan terperinci untuk setiap menu pada halaman utama dan apa yang terjadi ketika pengguna memilih tiap opsi.
 
-**Langkah-langkah penggunaan:**
-1. Pilih tombol **"ANTRIAN PASIEN"** dari halaman utama
-2. Pilih jenis antrian yang diinginkan:
-   - **ADMISI (Appointment):** Pendaftaran pasien dengan booking
-   - **ADMISI (Walk In):** Pendaftaran pasien umum
-   - **ADMISI (Rawat Inap & IGD):** Pendaftaran rawat inap dan IGD
-   - **CUSTOMER SERVICE:** Pelayanan informasi
-   - **FARMASI:** Pelayanan obat
-3. Sistem akan mengeluarkan nomor antrian
-4. Simpan nomor antrian untuk diproses di loket terkait
+1. ANTRIAN PASIEN
+- Tujuan: Mengeluarkan nomor antrian untuk berbagai layanan.
+- Pilihan antrian:
+  - ADMISI (Appointment): Untuk pasien dengan booking/janji.
+  - ADMISI (Walk In): Untuk pasien datang langsung tanpa booking.
+  - ADMISI (Rawat Inap & IGD): Untuk pendaftaran rawat inap atau kedatangan IGD.
+  - CUSTOMER SERVICE: Untuk pertanyaan umum atau bantuan administrasi.
+  - FARMASI: Untuk mengambil obat / layanan farmasi.
+- Alur: Pilih jenis antrian → sistem menerbitkan nomor antrian → cetak tiket antrian. Operator/pasien menyimpan nomor untuk dilayani pada loket tujuan.
+- Catatan: Untuk booking yang sudah ada, gunakan menu Check-in untuk verifikasi booking terlebih dahulu.
 
-### B. PENDAFTARAN POLIKLINIK
-**Fungsi:** Mendaftarkan pasien baru secara mandiri
+2. PENDAFTARAN POLIKLINIK
+- Tujuan: Mendaftarkan pasien baru atau pasien lama untuk pelayanan poli.
+- Alur: Masukkan No RM atau NIK → sistem menampilkan data (jika ada) → lengkapi data → pilih poli & dokter → konfirmasi → cetak bukti registrasi / nomor antrian.
+- Catatan: Jika pasien BPJS dan memerlukan SEP, lanjut ke menu PASIEN JKN.
 
-**Langkah-langkah penggunaan:**
-1. Pilih tombol **"PENDAFTARAN POLIKLINIK"** dari halaman utama
-2. Masukkan **Nomor Rekam Medis (No RM)** atau **Nomor KTP** pasien
-   - Gunakan tombol angka untuk memasukkan nomor
-   - Gunakan tombol `←` untuk menghapus satu karakter
-   - Gunakan tombol **C** untuk menghapus semua karakter
-3. Klik tombol centang (✓) untuk melanjutkan
-4. Sistem akan menampilkan data pasien
-5. Ikuti instruksi pendaftaran yang muncul di layar
+3. CHECK-IN (UMUM)
+- Tujuan: Konfirmasi kedatangan untuk pasien yang sudah booking.
+- Alur: Masukkan No RM → verifikasi booking → jika valid, konfirmasi kedatangan → cetak bukti check-in & nomor antrian.
+- Catatan: Jika booking tidak ditemukan, operator akan diinformasikan.
 
-### C. CHECK-IN (UMUM)
-**Fungsi:** Check-in pasien yang telah melakukan booking
+4. CHECK-IN (MobileJKN)
+- Tujuan: Check-in untuk booking via MobileJKN.
+- Alur: Masukkan No Kartu/No RM → sistem periksa MobileJKN → jika valid, proses check-in → cetak bukti.
+- Catatan: Perlu koneksi internet. Jika MobileJKN tidak dapat diakses, simpan sementara.
 
-**Langkah-langkah penggunaan:**
-1. Pilih tombol **"Check-in (UMUM)"** dari halaman utama
-2. Masukkan **Nomor Rekam Medis (No RM)** pasien
-   - Gunakan tombol angka untuk memasukkan nomor
-   - Gunakan tombol `←` untuk menghapus satu karakter
-   - Gunakan tombol **C** untuk menghapus semua karakter
-3. Klik tombol centang (✓) untuk melanjutkan
-4. Sistem akan memverifikasi booking dan menampilkan data
-5. Jika valid, pasien akan terdaftar dan menerima bukti registrasi
+5. PASIEN JKN
+- Tujuan: Menangani pendaftaran pasien BPJS dan pembuatan SEP.
+- Alur: Masukkan No JKN/No RM/NIK → tampilkan data VClaim → verifikasi → pilih poli & DPJP → isi data SEP → verifikasi biometrik bila perlu → proses pembuatan SEP → cetak bukti SEP & registrasi.
+- Catatan: Jika pembuatan SEP gagal karena hak kelas, duplikasi, atau batas harian, sistem akan menampilkan pesan dan opsi penanganan.
 
-### D. CHECK-IN (MobileJKN)
-**Fungsi:** Check-in pasien yang menggunakan aplikasi Mobile JKN
+6. SEP KONTROL
+- Tujuan: Membuat SEP untuk kunjungan kontrol.
+- Alur: Masukkan No Surat Kontrol atau No RM → sistem cek surat kontrol → jika valid & tanggal sesuai → buat SEP kontrol → cetak bukti.
+- Catatan: Jika tanggal kontrol belum sesuai (di masa depan), proses dihentikan dan operator diberi tahu.
 
-**Langkah-langkah penggunaan:**
-1. Pilih tombol **"Check-in (MobileJKN)"** dari halaman utama
-2. Masukkan **Nomor Kartu** atau **Nomor Rekam Medis**
-3. Klik tombol centang (✓) untuk melanjutkan
-4. Sistem akan memeriksa data booking dari Mobile JKN
-5. Jika valid, pasien akan terdaftar dan menerima bukti registrasi
+7. KONTROL BEDA POLI
+- Tujuan: Kontrol ke poli berbeda dari rujukan sebelumnya.
+- Alur: Masukkan No JKN/No RM → tampil riwayat SEP & rujukan → pilih poli baru → sistem menilai apakah rujukan masih berlaku → jika perlu, arahkan pembuatan rujukan FKTL atau opsi post‑RANAP.
+- Catatan: Jika rujukan awal tidak valid untuk poli tujuan, ikuti proses rujukan ke FKTL atau post‑RANAP sesuai kebijakan.
 
-### E. PASIEN JKN
-**Fungsi:** Pendaftaran dan pelayanan pasien BPJS
-
-**Langkah-langkah penggunaan:**
-1. Pilih tombol **"PASIEN JKN"** dari halaman utama
-2. Masukkan **No JKN/No RM/NIK** pasien
-   - Bisa menggunakan nomor kartu BPJS
-   - Bisa menggunakan nomor rekam medis
-   - Bisa menggunakan nomor KTP
-3. Klik tombol centang (✓) untuk melanjutkan
-4. Sistem akan menampilkan data elegibilitas pasien
-5. Verifikasi data dan lengkapi jika diperlukan
-6. Klik tombol **"Konfirmasi"** untuk membuat SEP
-
-### F. SEP KONTROL
-**Fungsi:** Membuat Surat Eligibilitas Peserta untuk kontrol
-
-**Langkah-langkah penggunaan:**
-1. Pilih tombol **"SEP KONTROL"** dari halaman utama
-2. Masukkan **nomor surat kontrol BPJS**
-3. Klik tombol centang (✓) untuk melanjutkan
-4. Sistem akan memverifikasi data kontrol
-5. Jika valid, akan ditampilkan data pelayanan kontrol
-6. Proses pendaftaran kontrol akan dilakukan otomatis
-
-### G. KONTROL BEDA POLI
-**Fungsi:** Pendaftaran kontrol ke poli berbeda
-
-**Langkah-langkah penggunaan:**
-1. Pilih tombol **"KONTROL BEDA POLI"** dari halaman utama
-2. Masukkan **No JKN/No RM/NIK** pasien
-3. Klik tombol centang (✓) untuk melanjutkan
-4. Sistem akan mengecek data pasien dan SEP sebelumnya
-5. Lakukan pilihan poli tujuan kontrol
-6. Proses pendaftaran kontrol beda poli akan dilakukan
-
-### H. AKTIVASI SATUSEHAT MOBILE
-**Fungsi:** Aktivasi fitur Satu Sehat Mobile
-
-**Langkah-langkah penggunaan:**
-1. Pilih tombol **"AKTIVASI SATUSEHAT MOBILE"** dari halaman utama
-2. Sistem akan mengarahkan ke aplikasi Satu Sehat
-3. Ikuti instruksi aktivasi di aplikasi
-4. Konfirmasi aktivasi di layar anjungan
+8. AKTIVASI SATUSEHAT MOBILE
+- Tujuan: Mengaktivasi akun pasien pada layanan Satu Sehat Mobile.
+- Alur: Arahkan pasien/operator ke proses aktivasi → setelah aktif, konfirmasi di layar → catat ID Satu Sehat pada rekam medis.
+- Catatan: Pastikan pasien menyetujui penggunaan data Satu Sehat.
 
 ---
 
-## PROSEDUR PENDAFTARAN LENGKAP BPJS
+## Aturan Bisnis dan Kondisi Operasional (bahasa non-teknis)
 
-**Langkah-langkah pendaftaran BPJS secara menyeluruh:**
+Berikut aturan utama yang menentukan apakah pendaftaran dilanjutkan atau ditunda/batal, dalam bahasa operasional (tanpa istilah pemrograman):
 
-1. Masukkan **Nomor Kartu BPJS** pada menu **"PASIEN JKN"**
-2. Sistem akan memanggil data dari **VClaim**
-3. Verifikasi **data pasien** yang ditampilkan
-4. Pilih **poli tujuan** pemeriksaan
-5. Pilih **dokter DPJP**
-6. Isi data **SEP** sesuai kebutuhan:
-   - Tanggal SEP
-   - Tanggal Rujukan
-   - No Rujukan
-   - PPK Rujukan
-   - Diagnosa Awal
-7. Lakukan **verifikasi sidik jari** atau pengenalan wajah
-8. Sistem akan membuat **SEP** dan memberikan bukti registrasi
+- Dokter sedang cuti → pendaftaran untuk dokter tersebut tidak dapat dilanjutkan. Solusi: pilih dokter lain atau jadwalkan ulang.  
+- Duplikasi pendaftaran → jika pasien sudah terdaftar pada poli/dokter & tanggal sama, pendaftaran baru diblokir. Solusi: gunakan Check‑in atau batalkan pendaftaran ganda.  
+- Biometrik wajib (pasien ≥17 tahun, layanan non‑IGD) → jika belum terverifikasi, pendaftaran tidak dilanjutkan. Solusi: lakukan verifikasi sidik jari atau prosedur alternatif.  
+- Persetujuan Satu Sehat tidak ada → aktivasi Satu Sehat tidak dapat dilakukan. Solusi: minta persetujuan pasien.  
+- Hak kelas peserta tidak sesuai → pendaftaran harus menyesuaikan kelas atau melakukan proses administrasi upgrade.  
+- Batas SEP harian tercapai → tidak boleh membuat SEP baru untuk jenis layanan yang sama (kecuali darurat).  
+- Nomor rujukan tidak sesuai/tidak ditemukan → pendaftaran rujukan tidak lanjut; solusi: periksa FKTP, minta rujukan ke FKTL, atau alur post‑RANAP.  
+- Laka Lantas → keterangan kecelakaan wajib diisi sebelum pendaftaran lanjut.  
+- Data wajib tidak lengkap → pendaftaran ditunda sampai data lengkap.
 
 ---
 
-## VALIDASI DAN PEMERIKSAAN SISTEM
+## Cek Kunjungan Pertama SEP & Cek SKDP/SEP Kontrol (rincian lengkap)
 
-### A. VALIDASI BIOMETRIK
+Bagian ini menjelaskan secara lengkap alur pemeriksaan dan penanganan ketika operator memilih menu terkait kunjungan pertama SEP atau SEP kontrol (SKDP).
 
-Sistem Anjungan Pasien Mandiri dilengkapi dengan fitur validasi biometrik yang terdiri dari:
+A. Cek Kunjungan Pertama SEP (penjelasan operasional)
+1. Tujuan: Menentukan apakah pasien perlu menjalani pendaftaran SEP pertama atau diarahkan ke alur lain (mis. MobileJKN).  
+2. Proses pemeriksaan:
+   - Sistem pertama-tama memeriksa apakah pasien sudah terdaftar pada MobileJKN. Jika ya:
+     - Sistem menampilkan pesan kepada operator: "Pasien telah menggunakan Mobile JKN. Silakan cek-in menggunakan menu MobileJKN".
+     - Tindakan: Operator harus menggunakan menu MobileJKN untuk proses selanjutnya (tidak lanjut di menu ini).
+   - Jika pasien tidak terdaftar MobileJKN, sistem mencari data pasien secara berurutan:
+     1) Cari berdasarkan nomor peserta (no_peserta) — prioritas utama.  
+     2) Jika tidak ditemukan, cari berdasarkan nomor rekam medis (no_rkm_medis).  
+     3) Jika masih tidak ditemukan, cari berdasarkan nomor KTP.  
+   - Jika data pasien ditemukan pada salah satu kriteria di atas:
+     - Sistem membuka form pendaftaran khusus untuk SEP pertama.  
+     - Form pendaftaran akan memanggil/menampilkan data fingerprint bila tersedia dan meminta verifikasi biometrik bila aturan usia/layanan mengharuskan.  
+3. Hasil akhir:
+   - Jika semua validasi terpenuhi → lanjutkan pembuatan SEP pertama, simpan data ke database lokal, dan cetak bukti registrasi.  
+   - Jika ada masalah data (tidak ditemukan / data tidak lengkap / biometrik belum dilakukan) → sistem menampilkan pesan dan menahan proses sampai diselesaikan.
 
-1. **Verifikasi Sidik Jari**
-   - Digunakan untuk pasien usia di atas 17 tahun
-   - Dilakukan melalui aplikasi sidik jari BPJS
-   - Validasi dilakukan secara real-time dengan server BPJS
+B. Cek SKDP / SEP Kontrol (penjelasan operasional)
+1. Tujuan: Memproses kunjungan kontrol berdasarkan surat kontrol (SKDP) yang telah diterbitkan sebelumnya.  
+2. Proses pemeriksaan:
+   - Sistem memeriksa tabel surat kontrol (`bridging_surat_kontrol_bpjs`) untuk menemukan entri berdasarkan nomor surat yang dimasukkan.  
+   - Jika surat kontrol ditemukan:
+     - Sistem membaca tanggal rencana kontrol dari data surat kontrol.  
+     - Jika tanggal rencana kontrol masih di masa depan (belum tiba waktunya):
+       - Sistem menampilkan pesan: "Jadwal kontrol tidak boleh maju".
+       - Tindakan: Operator tidak dapat melanjutkan pendaftaran untuk kunjungan kontrol ini; minta pasien kembali pada tanggal yang tercantum.  
+     - Jika tanggal rencana telah tiba (atau tanggal memungkinkan):
+       - Sistem memeriksa apakah pasien sudah menggunakan MobileJKN; jika pasien menggunakan MobileJKN, arahkan ke menu MobileJKN.  
+       - Jika tidak ada konflik, aplikasi akan membuka form registrasi kontrol (fungsi tampilan pendaftaran kontrol) sehingga operator dapat melanjutkan proses pembuatan SEP kontrol dan mencetak bukti.  
+   - Jika surat kontrol tidak ditemukan:
+     - Sistem menampilkan pesan: "Data surat kontrol tidak ditemukan!".  
+     - Tindakan: Operator dapat memeriksa nomor surat, hubungi admin/pihak terkait, atau bantu pasien dengan alur pendaftaran lain (mis. pembuatan SEP baru bila memenuhi syarat).  
+3. Hasil akhir:
+   - Kontrol valid → lanjutkan pembuatan SEP kontrol dan cetak bukti.  
+   - Kontrol belum sesuai waktu atau data tidak ditemukan → operasi dihentikan sampai masalah diselesaikan.
 
-2. **Pengenalan Wajah (Facial Recognition)**
-   - Alternatif verifikasi bagi pasien yang tidak bisa sidik jari
-   - Memanfaatkan kamera untuk melakukan pengenalan wajah
-   - Terintegrasi dengan sistem BPJS
-
-**Proses Validasi Biometrik:**
-- Sistem secara otomatis memeriksa apakah pasien sudah melakukan perekaman biometrik
-- Jika belum, pasien akan diminta melakukan perekaman
-- Jika sudah, sistem akan memverifikasi kesesuaian biometrik
-- Hasil validasi akan memengaruhi proses pembuatan SEP
-
-### B. VALIDASI DOKTER CUTI
-
-Sistem melakukan pemeriksaan otomatis terhadap status dokter:
-```
-if (Valid.ValidasiDOkterCuti(kodedokterreg, kodepolireg) == true) {
-    // Tampilkan pesan bahwa dokter sedang cuti
-}
-```
-
-### C. VALIDASI REGISTRASI BERULANG
-
-Sistem mencegah pendaftaran ganda dengan validasi:
-```
-if (Valid.ValidasiRegistrasi(kodepolireg, kodedokterreg, TNoRM.getText(), 
-     Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Kdpnj.getText()) == true) {
-    // Tampilkan pesan bahwa pasien sudah terdaftar
-}
-```
-
-### D. VALIDASI USIA DAN BIOMETRIK
-
-Untuk pasien dewasa (≥17 tahun), sistem mewajibkan validasi biometrik:
-```
-if (statusfinger == false && 
-    Sequel.cariInteger("select timestampdiff(year, '" + TglLahir.getText() + "', CURRENT_DATE())") >= 17 && 
-    JenisPelayanan.getSelectedIndex() != 0 && 
-    !KdPoli.getText().equals("IGD")) {
-    // Tampilkan pesan bahwa fingerprint belum dilakukan
-}
-```
-
-### E. VALIDASI SATU SEHAT
-
-Sistem memeriksa persetujuan penggunaan data untuk platform Satu Sehat:
-```
-public boolean GeneralConsentSatuSehat(String NoRMPasien) {
-    int cariflaging = Sequel.cariInteger(
-        "select count(flagging_pasien_satusehat.no_rkm_medis) from flagging_pasien_satusehat " +
-        "where flagging_pasien_satusehat.no_rkm_medis='" + NoRMPasien + "'");
-    
-    if (cariflaging > 0) {
-        return true; // Sudah memberikan persetujuan
-    } else {
-        return false; // Belum memberikan persetujuan
-    }
-}
-```
-
-### F. VALIDASI HAK KELAS
-
-Sistem memeriksa hak kelas peserta BPJS:
-```
-if (response.path("peserta").path("hakKelas").path("kode").asText().equals("1")) {
-    // Kelas 1
-} else if (response.path("peserta").path("hakKelas").path("kode").asText().equals("2")) {
-    // Kelas 2
-} else if (response.path("peserta").path("hakKelas").path("kode").asText().equals("3")) {
-    // Kelas 3
-}
-```
-
-### G. VALIDASI JENIS PELAYANAN
-
-Sistem membedakan antara rawat inap dan rawat jalan:
-```
-if (JenisPelayanan.getSelectedIndex() == 0) {
-    // Rawat Inap
-} else if (JenisPelayanan.getSelectedIndex() == 1) {
-    // Rawat Jalan
-}
-```
-
-### H. VALIDASI BATAS SEP
-
-Sistem membatasi jumlah SEP yang dapat dibuat dalam sehari:
-```
-if (Sequel.cariInteger(
-    "select count(bridging_sep.no_kartu) from bridging_sep " +
-    "where bridging_sep.no_kartu='" + no_peserta + "' and " +
-    "bridging_sep.jnspelayanan='" + JenisPelayanan.getSelectedItem().toString().substring(0, 1) + "' and " +
-    "bridging_sep.tglsep like '%" + Valid.SetTgl(TanggalSEP.getSelectedItem() + "") + "%' and " +
-    "bridging_sep.nmpolitujuan not like '%darurat%'") >= 1) {
-    // Batas SEP harian telah tercapai
-}
-```
-
-### I. VALIDASI NOMOR RUJUKAN
-
-Sistem memvalidasi format dan keberadaan nomor rujukan:
-```
-if (TujuanKunjungan.getSelectedItem().toString().equals("0. Normal") && 
-    FlagProsedur.getSelectedItem().toString().equals("") && 
-    Penunjang.getSelectedItem().toString().equals("") && 
-    AsesmenPoli.getSelectedItem().toString().equals("")) {
-    // Validasi rujukan normal
-}
-```
-
-### J. VALIDASI LAPORAN KECELAKAAN
-
-Untuk kasus kecelakaan lalu lintas:
-```
-if ((LakaLantas.getSelectedIndex() == 1) && Keterangan.getText().equals("")) {
-    // Keterangan kecelakaan harus diisi
-}
-```
+Catatan tambahan:
+- Semua pesan yang muncul bersifat informatif dan harus disampaikan ke pasien dengan bahasa sederhana. Petugas dianjurkan mencatat alasan penundaan jika pendaftaran ditunda.
 
 ---
 
-## PENTING DIPERHATIKAN
+## Autoprint / Silent Print (Cetak Otomatis)
 
-1. Pastikan **kartu BPJS aktif** dan tidak dalam status ditangguhkan
-2. Baca dengan **teliti data** yang ditampilkan sebelum konfirmasi
-3. **Simpan bukti registrasi** dan nomor antrian untuk proses selanjutnya
-4. Hubungi **petugas** jika terjadi kendala teknis
-5. Gunakan sistem dengan **jujur** dan tidak menyalahgunakannya
-6. **Validasi biometrik** wajib dilakukan untuk pasien dewasa
-7. Perhatikan **batas waktu pendaftaran** yang berlaku
-8. **Perbarui data** jika terdapat ketidaksesuaian
+A. Fungsi Autoprint / Silent Print
+- Sistem mendukung fitur cetak otomatis (autoprint / silent print) pada beberapa alur:
+  - Cetak tiket antrian.
+  - Cetak bukti registrasi.
+  - Cetak bukti SEP / surat rujukan.
+- Autoprint berarti setelah proses selesai (mis. SEP dibuat atau pendaftaran terkonfirmasi), sistem secara otomatis mengirim dokumen ke printer yang telah dikonfigurasi tanpa menampilkan dialog print ke operator.
+
+B. Konfigurasi dan perilaku
+- Pengaturan printer (nama printer, mode autoprint on/off, dan tray) disimpan pada konfigurasi aplikasi atau file konfigurasi yang hanya boleh diakses oleh admin.
+- Jika autoprint aktif:
+  - Sistem akan langsung mencetak dokumen yang relevan pada printer default yang dikonfigurasi.
+  - Jika printer tidak tersedia, sistem akan menampilkan pesan: "Printer tidak tersedia. Silakan periksa koneksi printer atau cetak secara manual."
+- Jika autoprint tidak aktif:
+  - Operator akan melihat dialog print untuk memilih printer atau opsi cetak ulang.
+
+C. Implementasi teknis singkat (untuk tim IT/developer)
+- Dalam implementasi Java, mekanisme "silent print" dapat diarahkan ke printer yang dipilih (selected printer) atau menggunakan printer default dari sistem operasi.
+- Pada kode aplikasi ini, terdapat akomodasi untuk kedua pendekatan tersebut:
+  - Jika konfigurasi menyertakan nama printer tertentu, sistem mengirim cetakan langsung ke printer yang dipilih tanpa menampilkan dialog.  
+  - Jika tidak ada nama printer yang dikonfigurasi, sistem akan menggunakan printer default OS untuk melakukan cetak otomatis.
+- Pastikan nama printer yang dikonfigurasi cocok dengan nama printer yang terdaftar di sistem operasi atau jaringan, agar cetak otomatis berjalan tanpa intervensi.
+
+D. Catatan implementasi dan operasional kecil
+- Sistem menyediakan opsi untuk reprint/cetak ulang pada form hasil pendaftaran sehingga operator dapat mencetak ulang jika perlu.
+- Periksa kompatibilitas driver printer (thermal/ESC-POS vs Windows driver) saat men-deploy kiosk/printer.
 
 ---
 
-## KESIMPULAN
+## Pesan Kesalahan dan Penanganan
 
-Anjungan Pasien Mandiri merupakan inovasi pelayanan rumah sakit yang bertujuan untuk memberikan kemudahan, efisiensi waktu, dan kenyamanan kepada pasien. Sistem ini dilengkapi dengan berbagai validasi otomatis untuk memastikan keakuratan data dan mencegah penyalahgunaan.
+Beberapa contoh pesan pengguna dan langkah lanjutan yang direkomendasikan:
 
-Dengan mengikuti panduan ini, diharapkan setiap pasien dapat menggunakan layanan dengan baik dan memperoleh pelayanan kesehatan secara optimal. Untuk informasi lebih lanjut atau bantuan teknis, silakan menghubungi **Customer Service** kami.
+- "Dokter sedang cuti untuk poli ini. Pilih dokter lain." → Ganti dokter atau jadwalkan ulang.  
+- "Pasien sudah terdaftar pada tanggal dan poli ini." → Periksa antrian, gunakan Check‑in.  
+- "Verifikasi sidik jari belum dilakukan. Silakan lakukan verifikasi." → Jalankan aplikasi fingerprint dan verifikasi.  
+- "Batas pembuatan SEP harian telah tercapai." → Verifikasi SEP sebelumnya; bila darurat, gunakan jalur darurat.  
+- "Nomor rujukan tidak valid." → Hubungi FKTP asal atau buat rujukan baru ke FKTL sesuai prosedur.  
+- "Keterangan kecelakaan belum diisi." → Isi keterangan lengkap; lanjutkan pendaftaran.  
+- "Koneksi ke layanan BPJS gagal." → Simpan pendaftaran lokal, beri tahu pasien, lakukan rekonsiliasi saat layanan pulih.  
+- "Jadwal kontrol tidak boleh maju." → Informasikan pasien mengenai tanggal rencana kontrol dan minta untuk kembali pada tanggal tersebut.
+
+Pesan tersebut sebaiknya ditampilkan dengan bahasa sederhana kepada pasien dan instruksi singkat untuk operator.
 
 ---
+
+## Offline & Rekonsiliasi BPJS
+
+Jika layanan BPJS atau MobileJKN tidak dapat diakses:
+1. Tampilkan informasi singkat kepada operator/pasien: "Layanan BPJS saat ini tidak tersedia. Pendaftaran akan disimpan sementara untuk direkonsiliasi."  
+2. Simpan data pendaftaran lokal dengan status menunggu rekonsiliasi.  
+3. Cetak bukti pendaftaran lokal dengan keterangan bahwa SEP belum dibuat.  
+4. Jalankan proses rekonsiliasi setelah layanan pulih: kirim ulang pendaftaran yang tertunda, catat hasil dan perbarui status.  
+5. Catat log rekonsiliasi: waktu, operator, alasan kegagalan, dan hasil setelah pengiriman ulang.
+
+---
+
+## Kepatuhan, Privasi, dan Keamanan
+
+- Hanya operator terotorisasi yang boleh mengakses modul SEP dan fitur biometrik.  
+- Semua transmisi data ke layanan eksternal harus melalui jaringan aman (VPN atau jaringan terisolasi RS).  
+- Simpan kredensial dan file konfigurasi pada lokasi yang aman dan berizin.  
+- Jaga kerahasiaan data pasien (PHI); ikuti kebijakan privasi rumah sakit dan peraturan yang berlaku.
+
+---
+
+## Panduan Demo & Checklist Operator
+
+Sebelum presentasi / pelatihan:
+- Pastikan koneksi database dan akun testing BPJS (jika tersedia).  
+- Perangkat fingerprint dan aplikasi After.exe siap dan terhubung.  
+- Printer terpasang dan dapat mencetak tiket.  
+- Siapkan skenario data: Walk-in, BPJS reguler, SEP kontrol, rujukan FKTP gagal → FKTL, post-RANAP, kasus Laka Lantas.
+
+Demo singkat:
+1. Tampilkan Halaman Utama → pilih ANTRIAN PASIEN → ambil nomor & cetak tiket.  
+2. Pendaftaran Walk-in: cari pasien / buat baru → pilih poli → cetak bukti.  
+3. Pendaftaran BPJS: masukkan nomor kartu test → verifikasi → buat SEP → cetak bukti (perhatikan autoprint).  
+4. Simulasi rujukan gagal: gunakan nomor rujukan tidak valid → tunjukkan opsi pindah ke FKTL atau post-RANAP.  
+5. Simulasi layanan BPJS down: tampilkan penyimpanan lokal dan proses rekonsiliasi.
+
+---
+
+## Kontak Dukungan Teknis (Diskusi Repository)
+
+Untuk pertanyaan operasional, pelaporan bug, permintaan fitur, atau berdiskusi mengenai alur kerja:
+- Silakan buat topik di tab "Discussions" pada repository ini: https://github.com/RS-INDRIATI/anjunganmandiriSEP/discussions  
+  - Gunakan kategori yang sesuai (General, Q&A, Bug reports, Features).  
+  - Cantumkan langkah reproduksi, screenshot jika perlu, dan log kesalahan bila tersedia.  
+- Untuk kebutuhan darurat atau informasi internal rumah sakit, hubungi Admin Sistem Informasi RS Indriati (cantumkan kontak internal di sini).
+
+Kami menganjurkan penggunaan Discussions untuk:
+- Mengumpulkan masukan pengguna/operator.  
+- Mendokumentasikan masalah umum dan solusi.  
+- Memudahkan tim pengembang merespons dan menindaklanjuti.
+
+---
+
+## Penutup
+
+Dokumentasi ini dirancang agar operator dan staf rumah sakit memahami alur kerja setiap menu, kondisi yang menyebabkan pendaftaran ditahan, dan langkah-langkah penanganan yang dapat dilakukan. Dokumen juga memuat panduan saat integrasi eksternal (BPJS/MobileJKN) bermasalah dan alur rujukan lanjutan seperti perpindahan ke FKTL atau proses post-RANAP.
